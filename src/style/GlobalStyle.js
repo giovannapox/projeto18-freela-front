@@ -5,8 +5,6 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', sans-serif;
         font-style: normal;
         font-weight: 400;
-        overflow: hidden;
-
     }
     button {
         outline: none;
@@ -31,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
             border: 2px solid #000000;
             margin: 0px;
         }
+        color: #DB651D;
     }
     form {
         display: flex;
