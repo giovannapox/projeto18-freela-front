@@ -5,18 +5,20 @@ import logo from "../assets/logo.png"
 import { useState } from "react";
 import axios from "axios";
 
-export default function SignInPage() {
+export default function SignUpPage() {
     const [cadastro, setCadastro] = useState({ name: "", email: "", photo: "", biography: "", password: "" });
     const [confirmPassword, setConfirmPassword] = useState();
     const navigate = useNavigate();
 
+    console.log(cadastro)
     function SignUp(e) {
-        e.prevent.default();
+        e.preventDefault();
 
         if(cadastro.password !== confirmPassword) return alert ("As senhas não coincidem");
 
-        const url = "http://localhost:5000/sign-up";
+        const url = "http://localhost:5000/signup";
         const promise = axios.post(url, cadastro);
+        console.log(promise)
         promise.then(() => {
             alert("Usuário cadastrado com sucesso!");
             navigate("/");
@@ -29,7 +31,7 @@ export default function SignInPage() {
     return (
         <>
             <Menu />
-            <SignInContainer>
+            <SignUpContainer>
                 <FormContainer>
                     <img src={logo} alt="logo" />
                     <form onSubmit={(e) => SignUp(e)}>
@@ -81,7 +83,7 @@ export default function SignInPage() {
                         </Link>
                     </form>
                 </FormContainer>
-            </SignInContainer>
+            </SignUpContainer>
         </>
     );
 };
@@ -111,7 +113,7 @@ const FormContainer = styled.div`
     }
 `
 
-const SignInContainer = styled.div`
+const SignUpContainer = styled.div`
     height: 100vh;
     display: flex;
     justify-content: center;
