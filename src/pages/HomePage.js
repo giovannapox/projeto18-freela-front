@@ -4,6 +4,7 @@ import Menu from "../components/Menu";
 import styled from "styled-components";
 import axios from "axios";
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function HomePage() {
                     <button>Seguindo</button>
                     <button>Seguidores</button>
                     <button>Buscar usuários</button>
-                    <button>Novo Post</button>
+                    <Link to="/newpost"><button>Novo Post</button></Link>
                 </SideBar>
                 <PostsContainer>
                     {posts.map((p) => <PostContainer>
