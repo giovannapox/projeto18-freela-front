@@ -15,7 +15,9 @@ const MenuContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #121210;
+    background-color: #FFFFFF;
+    position: fixed;
+    width: 100vw;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
     height: 100px;
     img {

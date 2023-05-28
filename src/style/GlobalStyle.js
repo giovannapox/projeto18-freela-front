@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
         outline: none;
         border: none;
         border-radius: 5px;
-        background-color: #DB651D;
+        background-color: #DB5275;
         font-size: 20px;
         color: #fff;
         cursor: pointer;
@@ -25,11 +25,13 @@ const GlobalStyle = createGlobalStyle`
         border: 1px solid #ccc;
         padding: 15px;
         margin: 1px;
+        color: #DB5275;
         :focus {
-            border: 2px solid #000000;
+            border: 2px solid #DB5275;
             margin: 0px;
+            color: #DB5275;
         }
-        color: #DB651D;
+        color: #DB5275;
     }
     form {
         display: flex;

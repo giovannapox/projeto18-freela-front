@@ -10,16 +10,17 @@ export default function SignInPage() {
     const navigate = useNavigate();
 
     function SignIn(e){
-        e.prevent.default();
+        e.preventDefault();
         if(!login) return alert("Preencha todos os campos!");
 
         const url = "http://localhost:5000/signin";
         const promise = axios.post(url, login);
+        console.log(promise)
         promise.then((res) => {
             alert("Login realizado com sucesso!");
             const token = `Bearer ${res.data.token}`;
             localStorage.setItem("token", token);
-            navigate("/");
+            navigate("/home");
         });
         promise.catch((err) => {
             alert(err.response.data);
@@ -66,7 +67,7 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #121210;
+    background-color: #FFFFFF;
     width: 800px;
     img {
         margin-top: 50px;
@@ -76,7 +77,7 @@ const FormContainer = styled.div`
     a{
         margin-top: 10px;
         text-decoration: none;
-        color: #FFFFFF;
+        color: #DB5275;
     }
     button {
         color: #FFFFFF;
@@ -84,8 +85,9 @@ const FormContainer = styled.div`
 `
 
 const SignInContainer = styled.div`
+    padding-top: 100px;
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: #E99431;
+    background-color: #F9AABB;
 `

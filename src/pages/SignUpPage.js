@@ -96,7 +96,7 @@ const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #121210;
+    background-color: #FFFFFF;
     width: 800px;
     img {
         margin-top: 30px;
@@ -106,7 +106,7 @@ const FormContainer = styled.div`
     a{
         margin-top: 10px;
         text-decoration: none;
-        color: #FFFFFF;
+        color: #DB5275;
     }
     button {
         color: #FFFFFF;
@@ -114,8 +114,9 @@ const FormContainer = styled.div`
 `
 
 const SignUpContainer = styled.div`
+    padding-top: 100px;
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: #E99431;
+    background-color: #F9AABB;
 `
