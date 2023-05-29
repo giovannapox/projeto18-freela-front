@@ -34,6 +34,7 @@ export default function AllUsersPage() {
     console.log(following)
 
     function Seguir (followingId){
+        alert("Seguindo")
         const id = localStorage.getItem("id");
         const url = `http://localhost:5000/following/${id}`;
         const promise = axios.post(url, {followingId: followingId});
@@ -44,6 +45,10 @@ export default function AllUsersPage() {
             return alert(err.response.data);
         });
     };
+
+    function visitarPerfil (id){
+        navigate(`/profile/${id}`)
+    }
     return (
         <>
             <Menu />
@@ -55,7 +60,7 @@ export default function AllUsersPage() {
                      />
                      <button>Buscar</button>
                 </FormContainer>
-                {users.map((u) => <UserContainer>
+                {users.map((u) => <UserContainer onClick={ () => visitarPerfil(u.id)}>
                     <img src={u.photo} />
                     <NomeDesc>
                         <h1>{u.name}</h1>

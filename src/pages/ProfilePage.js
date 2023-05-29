@@ -1,43 +1,40 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Menu from "../components/Menu";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
-import { Link } from "react-router-dom";
 
-export default function HomePage() {
-    const navigate = useNavigate();
-    const [posts, setPosts] = useState([]);
+export default function ProfilePage() {
     const [user, setUser] = useState([]);
-
+    const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
+    const params = useParams();
     useEffect(() => {
         if (!localStorage.getItem("token")) {
             navigate("/");
         }
-        const url = `http://localhost:5000/home`;
-        const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
+        const url = `http://localhost:5000/profile/${params.id}`;
+        const promise = axios.get(url)
         promise.then((res) => {
-            setPosts(res.data);
+            setUser(res.data);
         })
         promise.catch((err) => {
             return alert(err.response.data);
         })
 
-        const urlUser = `http://localhost:5000/user`;
-        const promiseUser = axios.get(urlUser, { headers: { "Authorization": localStorage.getItem("token") } })
-        promiseUser.then((res) => {
-            setUser(res.data);
-            const id = res.data.id;
-            console.log(id);
-            localStorage.setItem("id", id);
+        const postsUrl = `http://localhost:5000/posts/${params.id}`;
+        const PostPromise = axios.get(postsUrl)
+        PostPromise.then((res) => {
+            setPosts(res.data);
         })
-        promiseUser.catch((err) => {
+        PostPromise.catch((err) => {
             return alert(err.response.data);
         })
+
     }, []);
-    console.log(posts);
-    console.log(user);
+    console.log(user)
+    console.log(posts)
     return (
         <>
             <Menu />
@@ -46,10 +43,8 @@ export default function HomePage() {
                     <img src={user.photo} />
                     <h1>{user.name}</h1>
                     <p>{user.biography}</p>
-                    <Link to="/following"><button>Seguindo</button></Link>
-                    <Link to="/followers"><button>Seguidores</button></Link>
                     <Link to="/allusers"><button>Buscar usuários</button></Link>
-                    <Link to="/newpost"><button>Novo Post</button></Link>
+                    <Link to="/home"><button>Voltar para o meu perfil</button></Link>
                 </SideBar>
                 <PostsContainer>
                     {posts.map((p) => <PostContainer>
@@ -62,9 +57,8 @@ export default function HomePage() {
                     </PostContainer>)}
 
                 </PostsContainer>
-
-
             </HomePageContainer>
+
         </>
     );
 };
@@ -109,8 +103,8 @@ const SideBar = styled.div`
         font-size: 40px;
     }
 `
-
 const PostsContainer = styled.div`
+    margin-top: 20px;
     margin-left: 600px;
     margin-bottom: 20px;
     width: 1000px;

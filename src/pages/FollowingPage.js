@@ -3,9 +3,11 @@ import styled from "styled-components";
 import seguindo from "../assets/seguindo.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function FollowingPage(){
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         const url = `http://localhost:5000/following`;
         const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
@@ -17,12 +19,15 @@ export default function FollowingPage(){
         })
     }, [])
     console.log(users)
+    function visitarPerfil (id){
+        navigate(`/profile/${id}`)
+    }
     return (
         <>
         <Menu />
         <FollowingContainer>
             <img src={seguindo} />
-            {users.map((u) => <UserContainer>
+            {users.map((u) => <UserContainer onClick={ () => visitarPerfil(u.id)}>
                     <img src={u.photo} />
                     <NomeDesc>
                         <h1>{u.name}</h1>
@@ -38,7 +43,7 @@ export default function FollowingPage(){
 const FollowingContainer = styled.div`
     font-family: 'Poppins', sans-serif;
     background-color: #F9AABB;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     padding-top: 100px;
     display: flex;
