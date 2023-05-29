@@ -1,0 +1,83 @@
+import Menu from "../components/Menu";
+import styled from "styled-components";
+import seguindo from "../assets/seguindo.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export default function FollowingPage(){
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        const url = `http://localhost:5000/following`;
+        const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
+        promise.then((res) => {
+            setUsers(res.data);
+        })
+        promise.catch((err) => {
+            return alert(err.response.data);
+        })
+    }, [])
+    console.log(users)
+    return (
+        <>
+        <Menu />
+        <FollowingContainer>
+            <img src={seguindo} />
+            {users.map((u) => <UserContainer>
+                    <img src={u.photo} />
+                    <NomeDesc>
+                        <h1>{u.name}</h1>
+                        <p>{u.biography}</p>
+                    </NomeDesc>
+                </UserContainer>)}
+
+        </FollowingContainer>
+        </>
+    );
+};
+
+const FollowingContainer = styled.div`
+    font-family: 'Poppins', sans-serif;
+    background-color: #F9AABB;
+    height: 100%;
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img {
+        margin-top: 20px;
+        width: 500px;
+        margin-left: 20px;
+    }
+`
+
+const UserContainer = styled.div`
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    width: 1000px;
+    display: flex;
+    position: relative;
+    img {
+        width: 150px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        margin-left: 40px;
+        height: 150px;
+    }
+`
+
+const NomeDesc = styled.div`
+    margin-left: 50px;
+    margin-top: 20px;
+    h1{
+        font-size: 50px;
+        color: #DB5275;
+    }
+    p{
+        margin-top: 20px;
+        font-size: 20px;
+        color: #F9AABB;
+    }
+`

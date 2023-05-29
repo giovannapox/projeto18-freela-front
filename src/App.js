@@ -3,6 +3,9 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
 import NewPostPage from "./pages/NewPostPage";
+import FollowersPage from "./pages/FollowersPage";
+import FollowingPage from "./pages/FollowingPage";
+import AllUsersPage from "./pages/AllUsersPage";
 
 export default function App() {
   return (
@@ -13,6 +16,9 @@ export default function App() {
           <Route path="/cadastro" element={<SignUpPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/newpost" element={<NewPostPage />} />
+          <Route path="/following" element={<FollowingPage />} />
+          <Route path="/followers" element={<FollowersPage />} />
+          <Route path="/allusers" element={<AllUsersPage />} />
         </Routes>
       </BrowserRouter>
     </>

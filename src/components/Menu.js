@@ -20,6 +20,7 @@ const MenuContainer = styled.div`
     width: 100vw;
     filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.25));
     height: 100px;
+    z-index: 2;
     img {
         width: 80px;
     }

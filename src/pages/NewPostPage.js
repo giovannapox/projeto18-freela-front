@@ -69,11 +69,6 @@ const NewPostContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    h1{
-        margin-top: 20px;
-        font-size: 100px;
-        color: #DB5275;
-    }
     img {
         margin-top: 20px;
         width: 500px;

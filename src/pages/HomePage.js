@@ -28,6 +28,9 @@ export default function HomePage() {
         const promiseUser = axios.get(urlUser, { headers: { "Authorization": localStorage.getItem("token") } })
         promiseUser.then((res) => {
             setUser(res.data);
+            const id = res.data.id;
+            console.log(id);
+            localStorage.setItem("id", id);
         })
         promiseUser.catch((err) => {
             return alert(err.response.data);
@@ -43,9 +46,9 @@ export default function HomePage() {
                     <img src={user.photo} />
                     <h1>{user.name}</h1>
                     <p>{user.biography}</p>
-                    <button>Seguindo</button>
-                    <button>Seguidores</button>
-                    <button>Buscar usuários</button>
+                    <Link to="/following"><button>Seguindo</button></Link>
+                    <Link to="/followers"><button>Seguidores</button></Link>
+                    <Link to="/allusers"><button>Buscar usuários</button></Link>
                     <Link to="/newpost"><button>Novo Post</button></Link>
                 </SideBar>
                 <PostsContainer>
@@ -110,6 +113,7 @@ const SideBar = styled.div`
 const PostsContainer = styled.div`
     margin-top: 20px;
     margin-left: 600px;
+    margin-bottom: 20px;
     width: 1000px;
     border-radius: 30px;
     display: flex;
