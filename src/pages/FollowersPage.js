@@ -9,7 +9,7 @@ export default function FollowersPage(){
         const [users, setUsers] = useState([]);
         const navigate = useNavigate();
         useEffect(() => {
-            const url = `http://localhost:5000/followers`;
+            const url = `${process.env.REACT_APP_BD}/followers`;
             const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
             promise.then((res) => {
                 setUsers(res.data);

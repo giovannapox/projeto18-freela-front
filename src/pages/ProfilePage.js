@@ -14,7 +14,7 @@ export default function ProfilePage() {
         if (!localStorage.getItem("token")) {
             navigate("/");
         }
-        const url = `http://localhost:5000/profile/${params.id}`;
+        const url = `${process.env.REACT_APP_BD}/profile/${params.id}`;
         const promise = axios.get(url)
         promise.then((res) => {
             setUser(res.data);
@@ -23,7 +23,7 @@ export default function ProfilePage() {
             return alert(err.response.data);
         })
 
-        const postsUrl = `http://localhost:5000/posts/${params.id}`;
+        const postsUrl = `${process.env.REACT_APP_BD}/posts/${params.id}`;
         const PostPromise = axios.get(postsUrl)
         PostPromise.then((res) => {
             setPosts(res.data);

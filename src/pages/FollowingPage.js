@@ -9,7 +9,7 @@ export default function FollowingPage(){
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
-        const url = `http://localhost:5000/following`;
+        const url = `${process.env.REACT_APP_BD}/following`;
         const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
         promise.then((res) => {
             setUsers(res.data);

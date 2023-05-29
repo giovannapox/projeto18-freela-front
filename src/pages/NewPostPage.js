@@ -17,7 +17,7 @@ export default function NewPostPage() {
             navigate("/");
         }
 
-        const url = "http://localhost:5000/newpost";
+        const url = `${process.env.REACT_APP_BD}/newpost`;
         const promise = axios.post(url, post, { headers: { "Authorization": localStorage.getItem("token") } });
         promise.then(() => {
             alert("Post criado com sucesso!");

@@ -12,7 +12,7 @@ export default function AllUsersPage() {
         if (!localStorage.getItem("token")) {
             navigate("/");
         }
-        const url = `http://localhost:5000/users`;
+        const url = `${process.env.REACT_APP_BD}/users`;
         const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
         promise.then((res) => {
             setUsers(res.data);
@@ -21,7 +21,7 @@ export default function AllUsersPage() {
             return alert(err.response.data);
         })
 
-        const followingUrl = `http://localhost:5000/following`;
+        const followingUrl = `${process.env.REACT_APP_BD}/following`;
         const FPromise = axios.get(followingUrl, { headers: { "Authorization": localStorage.getItem("token") } })
         FPromise.then((res) => {
             setFollowing(res.data);
@@ -36,7 +36,7 @@ export default function AllUsersPage() {
     function Seguir (followingId){
         alert("Seguindo")
         const id = localStorage.getItem("id");
-        const url = `http://localhost:5000/following/${id}`;
+        const url = `${process.env.REACT_APP_BD}/following/${id}`;
         const promise = axios.post(url, {followingId: followingId});
         promise.then((res) => {
             console.log(res.data);

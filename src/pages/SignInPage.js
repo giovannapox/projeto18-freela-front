@@ -13,7 +13,7 @@ export default function SignInPage() {
         e.preventDefault();
         if(!login) return alert("Preencha todos os campos!");
 
-        const url = "http://localhost:5000/signin";
+        const url = `${process.env.REACT_APP_BD}/signin`;
         const promise = axios.post(url, login);
         console.log(promise)
         promise.then((res) => {

@@ -16,7 +16,7 @@ export default function SignUpPage() {
 
         if(cadastro.password !== confirmPassword) return alert ("As senhas não coincidem");
 
-        const url = "http://localhost:5000/signup";
+        const url = `${process.env.REACT_APP_BD}/signup`;
         const promise = axios.post(url, cadastro);
         console.log(promise)
         promise.then(() => {

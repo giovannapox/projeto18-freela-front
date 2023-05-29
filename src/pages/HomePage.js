@@ -15,7 +15,7 @@ export default function HomePage() {
         if (!localStorage.getItem("token")) {
             navigate("/");
         }
-        const url = `http://localhost:5000/home`;
+        const url = `${process.env.REACT_APP_BD}/home`;
         const promise = axios.get(url, { headers: { "Authorization": localStorage.getItem("token") } })
         promise.then((res) => {
             setPosts(res.data);
@@ -24,7 +24,7 @@ export default function HomePage() {
             return alert(err.response.data);
         })
 
-        const urlUser = `http://localhost:5000/user`;
+        const urlUser = `${process.env.REACT_APP_BD}/user`;
         const promiseUser = axios.get(urlUser, { headers: { "Authorization": localStorage.getItem("token") } })
         promiseUser.then((res) => {
             setUser(res.data);
